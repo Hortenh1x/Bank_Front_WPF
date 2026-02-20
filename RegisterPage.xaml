@@ -1,0 +1,50 @@
+<Page x:Class="BankFrontEnd.RegisterPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="RegisterPage">
+
+    <Grid>
+        <Border Style="{StaticResource CardStyle}"
+                Width="460"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="Create your profile" Style="{StaticResource PageTitleStyle}" HorizontalAlignment="Center"/>
+                <TextBlock Text="Start banking in a few seconds"
+                           Style="{StaticResource PageSubtitleStyle}"
+                           HorizontalAlignment="Center"
+                           Margin="0,4,0,24"/>
+
+                <TextBlock Text="First Name" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,6"/>
+                <TextBox x:Name="FirstNameTextBox" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Last Name" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,6"/>
+                <TextBox x:Name="LastNameTextBox" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Password" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,6"/>
+                <PasswordBox x:Name="PasswordBox" Margin="0,0,0,10"/>
+
+                <TextBlock Text="Repeat Password" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,6"/>
+                <PasswordBox x:Name="RepeatPasswordBox" Margin="0,0,0,18"/>
+
+                <Button Content="Create Account"
+                        Style="{StaticResource SuccessButtonStyle}"
+                        Height="40"
+                        Click="RegisterButton_Click"/>
+
+                <Button Content="Back to Login"
+                        Style="{StaticResource LinkButtonStyle}"
+                        HorizontalAlignment="Center"
+                        Margin="0,14,0,0"
+                        Click="BackToLogin_Click"/>
+
+                <TextBlock x:Name="ErrorMessageText"
+                           Foreground="#DC2626"
+                           TextAlignment="Center"
+                           TextWrapping="Wrap"
+                           Margin="0,14,0,0"
+                           Visibility="Collapsed"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

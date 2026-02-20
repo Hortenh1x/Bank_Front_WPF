@@ -1,0 +1,99 @@
+<Window x:Class="BankFrontEnd.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Banking App"
+        Height="680"
+        Width="1080"
+        MinHeight="620"
+        MinWidth="980">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Border Padding="18,14" BorderBrush="#0B4F55" BorderThickness="0,0,0,1">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="#0F172A" Offset="0"/>
+                    <GradientStop Color="#0F766E" Offset="1"/>
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Button Content="MY BANK"
+                        FontSize="24"
+                        FontWeight="SemiBold"
+                        Foreground="White"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Cursor="Hand"
+                        Click="Home_Click"/>
+
+                <StackPanel Grid.Column="2" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,6,0">
+                    <Button Content="Login"
+                            FontSize="14"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Margin="0,0,18,0"
+                            Cursor="Hand"
+                            Click="Login_Click"/>
+
+                    <Button Content="ATM"
+                            FontSize="14"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Margin="0,0,18,0"
+                            Cursor="Hand"
+                            Click="ATM_Click"/>
+
+                    <Button Content="Transfer"
+                            FontSize="14"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Margin="0,0,18,0"
+                            Cursor="Hand"
+                            Click="Transfer_Click"/>
+
+                    <Button Content="My Accounts"
+                            FontSize="14"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Cursor="Hand"
+                            Click="Accounts_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1" Background="{StaticResource BackgroundBrush}">
+            <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>
+
+            <Border x:Name="ToastBorder"
+                    Background="#2ECC71"
+                    CornerRadius="10"
+                    Padding="14,10"
+                    Margin="0,20,20,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Visibility="Collapsed"
+                    IsHitTestVisible="False"
+                    Panel.ZIndex="10">
+                <TextBlock x:Name="ToastText"
+                           Foreground="White"
+                           FontWeight="SemiBold"
+                           MaxWidth="320"
+                           TextWrapping="Wrap"/>
+            </Border>
+        </Grid>
+    </Grid>
+</Window>

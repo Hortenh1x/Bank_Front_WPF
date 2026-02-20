@@ -1,0 +1,39 @@
+<Page x:Class="BankFrontEnd.TransferPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="TransferPage">
+    <Grid>
+        <Border Style="{StaticResource CardStyle}" MaxWidth="720" HorizontalAlignment="Center">
+            <StackPanel>
+                <TextBlock Text="Transfer Money" Style="{StaticResource PageTitleStyle}"/>
+                <TextBlock x:Name="StatusText" Margin="0,8,0,16" Foreground="{StaticResource TextMutedBrush}"/>
+
+                <TextBlock Text="From account" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,6"/>
+                <ComboBox x:Name="FromAccountComboBox"
+                          DisplayMemberPath="DisplayText"
+                          SelectedValuePath="Id"
+                          Margin="0,0,0,12"/>
+
+                <TextBlock Text="To account ID" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,6"/>
+                <TextBox x:Name="ToAccountTextBox" Margin="0,0,0,12"/>
+
+                <TextBlock Text="Amount" Foreground="{StaticResource TextMutedBrush}" Margin="0,0,0,6"/>
+                <TextBox x:Name="AmountTextBox" Margin="0,0,0,16"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Transfer"
+                            Width="130"
+                            Height="38"
+                            Margin="0,0,10,0"
+                            Style="{StaticResource PrimaryButtonStyle}"
+                            Click="Transfer_Click"/>
+                    <Button Content="View My Accounts"
+                            Width="160"
+                            Height="38"
+                            Style="{StaticResource SecondaryButtonStyle}"
+                            Click="ViewAccounts_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Page>

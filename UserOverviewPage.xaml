@@ -1,0 +1,63 @@
+<Page x:Class="BankFrontEnd.UserOverviewPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="UserOverviewPage">
+
+    <Grid>
+        <Border Style="{StaticResource CardStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="0,0,0,8">
+                    <TextBlock Text="Welcome, " FontSize="26" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                    <TextBlock x:Name="UserNameText" FontSize="26" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}"/>
+                </StackPanel>
+
+                <TextBlock x:Name="StatusText"
+                           Grid.Row="1"
+                           Foreground="{StaticResource TextMutedBrush}"
+                           Margin="0,0,0,12"/>
+
+                <ListView x:Name="AccountsListView"
+                          Grid.Row="2">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Account ID" Width="140" DisplayMemberBinding="{Binding Id}"/>
+                            <GridViewColumn Header="Balance" Width="180">
+                                <GridViewColumn.DisplayMemberBinding>
+                                    <Binding Path="Deposit" Converter="{StaticResource EuroCurrencyConverter}"/>
+                                </GridViewColumn.DisplayMemberBinding>
+                            </GridViewColumn>
+                            <GridViewColumn Header=" ">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Button Content="Open"
+                                                Width="92"
+                                                Height="34"
+                                                Style="{StaticResource PrimaryButtonStyle}"
+                                                Click="OpenAccount_Click"
+                                                Tag="{Binding}"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <Button Grid.Row="3"
+                        Content="Add Account"
+                        Width="140"
+                        Height="38"
+                        Margin="0,14,0,0"
+                        HorizontalAlignment="Left"
+                        Style="{StaticResource SuccessButtonStyle}"
+                        Click="AddAccount_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

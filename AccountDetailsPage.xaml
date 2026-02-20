@@ -1,0 +1,88 @@
+<Page x:Class="BankFrontEnd.AccountDetailsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="AccountDetailsPage">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <StackPanel Margin="0,0,0,12">
+            <Border Style="{StaticResource CardStyle}">
+                <StackPanel>
+                    <Button Content="Back"
+                            Width="92"
+                            Height="34"
+                            HorizontalAlignment="Left"
+                            Style="{StaticResource GhostButtonStyle}"
+                            Click="Back_Click"/>
+
+                    <TextBlock Text="Account Details" Style="{StaticResource PageTitleStyle}" Margin="0,12,0,0"/>
+                    <TextBlock x:Name="AccountIdText" FontSize="16" Foreground="{StaticResource TextMutedBrush}" Margin="0,10,0,0"/>
+                    <TextBlock x:Name="DepositText" FontSize="16" Foreground="{StaticResource TextMutedBrush}" Margin="0,4,0,0"/>
+                    <TextBlock x:Name="StatusText" Foreground="{StaticResource TextMutedBrush}" Margin="0,10,0,0"/>
+                </StackPanel>
+            </Border>
+
+            <Border Style="{StaticResource CardStyle}" Margin="24,0,24,24">
+                <StackPanel>
+                    <TextBlock Text="Transactions" FontSize="22" FontWeight="SemiBold" Foreground="{StaticResource TextPrimaryBrush}" Margin="0,0,0,10"/>
+                    <TextBlock Text="Click a transaction to open full details"
+                               Style="{StaticResource PageSubtitleStyle}"
+                               Margin="0,0,0,10"/>
+
+                    <ListView x:Name="TransactionsListView"
+                              SelectionChanged="TransactionsListView_SelectionChanged"
+                              AlternationCount="2">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem" BasedOn="{StaticResource ModernListViewItemStyle}">
+                                <Setter Property="Cursor" Value="Hand"/>
+                                <Setter Property="Margin" Value="4,3"/>
+                                <Style.Triggers>
+                                    <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                        <Setter Property="Background" Value="#FCFEFF"/>
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Date" Width="180" DisplayMemberBinding="{Binding Date_time}"/>
+                                <GridViewColumn Header="Type" Width="130">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border x:Name="TypeBadge" Padding="10,4" CornerRadius="12" HorizontalAlignment="Left">
+                                                <TextBlock x:Name="TypeText"
+                                                           Text="{Binding Type}"
+                                                           FontSize="12"
+                                                           FontWeight="SemiBold"/>
+                                            </Border>
+                                            <DataTemplate.Triggers>
+                                                <DataTrigger Binding="{Binding Type}" Value="Deposit">
+                                                    <Setter TargetName="TypeBadge" Property="Background" Value="#E8F8EE"/>
+                                                    <Setter TargetName="TypeText" Property="Foreground" Value="#0F8A4A"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Type}" Value="Withdrawal">
+                                                    <Setter TargetName="TypeBadge" Property="Background" Value="#FEF1E8"/>
+                                                    <Setter TargetName="TypeText" Property="Foreground" Value="#D65B0B"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Type}" Value="Transfer">
+                                                    <Setter TargetName="TypeBadge" Property="Background" Value="#EAF3FF"/>
+                                                    <Setter TargetName="TypeText" Property="Foreground" Value="#2665D0"/>
+                                                </DataTrigger>
+                                            </DataTemplate.Triggers>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Amount" Width="130">
+                                    <GridViewColumn.DisplayMemberBinding>
+                                        <Binding Path="Deposit" Converter="{StaticResource EuroCurrencyConverter}"/>
+                                    </GridViewColumn.DisplayMemberBinding>
+                                </GridViewColumn>
+                                <GridViewColumn Header="From Owner" Width="150" DisplayMemberBinding="{Binding FromOwnerDisplay}"/>
+                                <GridViewColumn Header="To Owner" Width="150" DisplayMemberBinding="{Binding ToOwnerDisplay}"/>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </Border>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
