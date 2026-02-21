@@ -44,8 +44,8 @@ namespace BankFrontEnd
             {
                 First_name = firstName,
                 Last_name = lastName,
-                Password_hash = password,
-                Password_hash_repeat = repeatPassword
+                Password = password,
+                Password_repeat = repeatPassword
             };
 
             try
@@ -148,8 +148,8 @@ namespace BankFrontEnd
         {
             public required string First_name { get; set; }
             public required string Last_name { get; set; }
-            public required string Password_hash { get; set; }
-            public required string Password_hash_repeat { get; set; }
+            public required string Password { get; set; }
+            public required string Password_repeat { get; set; }
         }
     }
 }

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v9.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v9.0": {
+      "Bank_Front_WPF/1.0.0": {
+        "runtime": {
+          "Bank_Front_WPF.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Bank_Front_WPF/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

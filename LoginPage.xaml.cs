@@ -50,7 +50,7 @@ namespace BankFrontEnd
             var payload = new LoginRequest
             {
                 Id = userId,
-                Password_hash = password
+                Password = password
             };
 
             try
@@ -153,7 +153,7 @@ namespace BankFrontEnd
         private sealed class LoginRequest
         {
             public required int Id { get; set; }
-            public required string Password_hash { get; set; }
+            public required string Password { get; set; }
         }
     }
 }
