@@ -8,7 +8,7 @@ namespace BankFrontEnd
         // Accept digits with optional decimal separator (dot or comma) and up to 2 decimals.
         private static readonly Regex Pattern = new Regex(@"^\d+([.,]\d{1,2})?$", RegexOptions.Compiled);
 
-        public static bool TryParse(string? rawInput, out double amount, out string validationMessage)
+        public static bool TryParse(string? rawInput, out decimal amount, out string validationMessage)
         {
             amount = 0;
 
@@ -38,7 +38,7 @@ namespace BankFrontEnd
                 return false;
             }
 
-            amount = (double)parsed;
+            amount = parsed;
             validationMessage = string.Empty;
             return true;
         }

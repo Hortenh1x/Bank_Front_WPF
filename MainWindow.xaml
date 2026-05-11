@@ -64,6 +64,15 @@
                             Cursor="Hand"
                             Click="Transfer_Click"/>
 
+                    <Button Content="Payments"
+                            FontSize="14"
+                            Foreground="White"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Margin="0,0,18,0"
+                            Cursor="Hand"
+                            Click="Payments_Click"/>
+
                     <Button Content="My Accounts"
                             FontSize="14"
                             Foreground="White"

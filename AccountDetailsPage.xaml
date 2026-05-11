@@ -44,7 +44,7 @@
                         </ListView.ItemContainerStyle>
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Date" Width="180" DisplayMemberBinding="{Binding Date_time}"/>
+                                <GridViewColumn Header="Date" Width="180" DisplayMemberBinding="{Binding DateDisplay}"/>
                                 <GridViewColumn Header="Type" Width="130">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>

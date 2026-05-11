@@ -8,9 +8,14 @@ namespace BankFrontEnd
     {
         private static readonly CultureInfo EuroCulture = CreateEuroCulture();
 
-        public static string Format(double amount)
+        public static string Format(decimal amount)
         {
             return amount.ToString("C2", EuroCulture);
+        }
+
+        public static string Format(double amount)
+        {
+            return Format((decimal)amount);
         }
 
         private static CultureInfo CreateEuroCulture()
@@ -25,6 +30,11 @@ namespace BankFrontEnd
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value is decimal amountDecimal)
+            {
+                return EuroFormatter.Format(amountDecimal);
+            }
+
             if (value is double amount)
             {
                 return EuroFormatter.Format(amount);
@@ -35,12 +45,7 @@ namespace BankFrontEnd
                 return EuroFormatter.Format(amountFloat);
             }
 
-            if (value is decimal amountDecimal)
-            {
-                return EuroFormatter.Format((double)amountDecimal);
-            }
-
-            return EuroFormatter.Format(0);
+            return EuroFormatter.Format(0m);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

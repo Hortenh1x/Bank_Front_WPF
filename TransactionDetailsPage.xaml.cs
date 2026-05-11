@@ -33,7 +33,7 @@ namespace BankFrontEnd
             }
 
             TransactionIdText.Text = transaction.Id.ToString();
-            DateText.Text = transaction.Date_time;
+            DateText.Text = transaction.DateDisplay;
             AmountText.Text = transaction.AmountDisplay;
             FromText.Text = transaction.From_id.ToString();
             FromOwnerText.Text = string.IsNullOrWhiteSpace(transaction.FromOwnerDisplay) ? "-" : transaction.FromOwnerDisplay;

@@ -125,7 +125,7 @@ namespace BankFrontEnd
         private sealed class AccountDto
         {
             public int Id { get; set; }
-            public double Deposit { get; set; }
+            public decimal Deposit { get; set; }
             public int User_id { get; set; }
         }
     }

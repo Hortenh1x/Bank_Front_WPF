@@ -5,6 +5,8 @@ namespace BankFrontEnd
         public static string? Token { get; private set; }
         public static DateTime? ExpiresAtUtc { get; private set; }
         public static int? LoginPrefillUserId { get; private set; }
+        public static PendingPaymentLink? PendingPayment { get; private set; }
+        private static bool pendingPaymentPageRequested;
 
         public static bool IsAuthenticated => !string.IsNullOrWhiteSpace(Token) && !IsExpired;
 
@@ -59,5 +61,36 @@ namespace BankFrontEnd
             LoginPrefillUserId = null;
             return userId;
         }
+
+        public static void SetPendingPayment(string externalPaymentId, string? clientToken)
+        {
+            if (string.IsNullOrWhiteSpace(externalPaymentId))
+            {
+                return;
+            }
+
+            PendingPayment = new PendingPaymentLink(externalPaymentId.Trim(), clientToken);
+        }
+
+        public static void RequestPaymentPage()
+        {
+            pendingPaymentPageRequested = true;
+        }
+
+        public static PendingPaymentLink? ConsumePendingPayment()
+        {
+            PendingPaymentLink? payment = PendingPayment;
+            PendingPayment = null;
+            return payment;
+        }
+
+        public static bool ConsumePaymentPageRequest()
+        {
+            bool requested = pendingPaymentPageRequested;
+            pendingPaymentPageRequested = false;
+            return requested;
+        }
+
+        public sealed record PendingPaymentLink(string ExternalPaymentId, string? ClientToken);
     }
 }

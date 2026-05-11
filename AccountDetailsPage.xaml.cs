@@ -121,7 +121,7 @@ namespace BankFrontEnd
 
         private sealed class BalanceResponse
         {
-            public double CurrentBalance { get; set; }
+            public decimal CurrentBalance { get; set; }
         }
     }
 }

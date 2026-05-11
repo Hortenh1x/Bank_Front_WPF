@@ -8,4 +8,11 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Bank_Front_WPF.Tests\**" />
+    <Content Remove="Bank_Front_WPF.Tests\**" />
+    <EmbeddedResource Remove="Bank_Front_WPF.Tests\**" />
+    <None Remove="Bank_Front_WPF.Tests\**" />
+  </ItemGroup>
+
 </Project>

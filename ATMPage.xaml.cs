@@ -63,7 +63,7 @@ namespace BankFrontEnd
                 return;
             }
 
-            if (!TryReadAmount(out double amount, out string validationMessage))
+            if (!TryReadAmount(out decimal amount, out string validationMessage))
             {
                 string message = validationMessage;
                 StatusText.Text = message;
@@ -99,7 +99,7 @@ namespace BankFrontEnd
                 }
 
                 OperationResponse? result = JsonSerializer.Deserialize<OperationResponse>(body, ApiClient.JsonOptions);
-                StatusText.Text = $"Success. New balance: {EuroFormatter.Format(result?.CurrentBalance ?? 0)}";
+                StatusText.Text = $"Success. New balance: {EuroFormatter.Format(result?.CurrentBalance ?? 0m)}";
                 Notifier.Success(isDeposit ? "Deposit successful." : "Withdrawal successful.");
                 AmountTextBox.Clear();
                 await LoadAccountsAsync();
@@ -171,7 +171,7 @@ namespace BankFrontEnd
             NavigationService?.Navigate(new LoginPage());
         }
 
-        private bool TryReadAmount(out double amount, out string validationMessage)
+        private bool TryReadAmount(out decimal amount, out string validationMessage)
         {
             return AmountInput.TryParse(AmountTextBox.Text, out amount, out validationMessage);
         }
@@ -203,25 +203,25 @@ namespace BankFrontEnd
         private sealed class DepositRequest
         {
             public int To_id { get; set; }
-            public double Amount { get; set; }
+            public decimal Amount { get; set; }
         }
 
         private sealed class WithdrawalRequest
         {
             public int From_id { get; set; }
-            public double Amount { get; set; }
+            public decimal Amount { get; set; }
         }
 
         private sealed class OperationResponse
         {
             public int Id { get; set; }
-            public double CurrentBalance { get; set; }
+            public decimal CurrentBalance { get; set; }
         }
 
         private sealed class AccountDto
         {
             public int Id { get; set; }
-            public double Deposit { get; set; }
+            public decimal Deposit { get; set; }
             public int User_id { get; set; }
             [JsonIgnore]
             public string DisplayText => $"{Id} ({EuroFormatter.Format(Deposit)})";

@@ -23,6 +23,28 @@ namespace BankFrontEnd
             MainFrame.Navigate(new HomePage());
         }
 
+        public void OpenPaymentPage(string? externalPaymentId = null, string? clientToken = null)
+        {
+            if (!string.IsNullOrWhiteSpace(externalPaymentId))
+            {
+                Session.SetPendingPayment(externalPaymentId, clientToken);
+            }
+            else if (!Session.IsAuthenticated)
+            {
+                Session.RequestPaymentPage();
+            }
+
+            if (!EnsureAuthenticatedOrRedirect())
+            {
+                return;
+            }
+
+            Session.PendingPaymentLink? pendingPayment = Session.ConsumePendingPayment();
+            MainFrame.Navigate(pendingPayment == null
+                ? new PaymentConfirmPage()
+                : new PaymentConfirmPage(pendingPayment.ExternalPaymentId, pendingPayment.ClientToken));
+        }
+
         // Redirects to the Home Page
         private void Home_Click(object sender, RoutedEventArgs e)
         {
@@ -53,6 +75,11 @@ namespace BankFrontEnd
             }
 
             MainFrame.Navigate(new TransferPage());
+        }
+
+        private void Payments_Click(object sender, RoutedEventArgs e)
+        {
+            OpenPaymentPage();
         }
 
         // Redirects to the Accounts Page

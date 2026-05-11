@@ -80,6 +80,18 @@ namespace BankFrontEnd
 
                 Session.SetToken(token);
                 Notifier.Success("Login successful.");
+                Session.PendingPaymentLink? pendingPayment = Session.ConsumePendingPayment();
+                if (pendingPayment != null)
+                {
+                    NavigationService?.Navigate(new PaymentConfirmPage(pendingPayment.ExternalPaymentId, pendingPayment.ClientToken));
+                    return;
+                }
+                if (Session.ConsumePaymentPageRequest())
+                {
+                    NavigationService?.Navigate(new PaymentConfirmPage());
+                    return;
+                }
+
                 NavigationService?.Navigate(new UserOverviewPage());
             }
             catch (Exception ex)
